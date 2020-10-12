@@ -1,0 +1,43 @@
+/* https://www.w3schools.com/howto/howto_js_sticky_header.asp */
+/* Style the header */
+header {
+  padding: 10px 16px;
+  background: #555;
+  color: #f1f1f1;
+}
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 102px;
+}
+
+.header-links {
+  display: inline-flex;
+  padding: 5px;
+  color: powderblue;
+}
+
+.header-links:link {
+  /* https://www.w3schools.com/css/css_link.asp */
+  text-decoration: none;
+}
+
+.github-images {
+  border-style: solid;
+}
+
+.note {
+  background-color: yellow;
+}

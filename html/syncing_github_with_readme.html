@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Syncing Github With README</title>
+    <link rel="stylesheet" href="../css/syncing_github_with_readme.css">
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <header>
+      <a href="index.html" class="header-links">Home</a>
+    </header>
+    <div class="content">
+      <h1>Creating a Github Repository with a README</h1>
+      <ul>
+        <li><a href="#step1">Step 1</a></li>
+        <li><a href="#step2">Step 2</a></li>
+        <li><a href="#step3">Step 3</a></li>
+        <li><a href="#step4">Step 4</a></li>
+        <li><a href="#step5">Step 5</a></li>
+      </ul>
+      <ol>
+        <li id="step1">
+          <p>Once you have <a href="creating_github_with_readme.html">created</a> your github repository, click the green "Code" button and copy the ssh url. It should look like: <strong>git@github.com:{github_username}/{project_name}</strong></p>
+          <img class="github-images" src="../images/syncing_github_with_readme/step1.png">
+        </li>
+        <li id="step2">
+          <p>Open up your terminal (mac) or git bash (windows)</p>
+          <p><strong>Mac</strong></p>
+          <img class="github-images" src="../images/github_shared/terminal_mac.png">
+          <p><strong>Windows</strong></p>
+          <h3>TBD</h3>
+        </li>
+        <li id="step3">
+          <p>Commands are as follows</p>
+          <ul>
+            <li>cd ~/directory/to/where/your/work/is</li>
+            <li>git init</li>
+            <li>git remote add origin {github_repository_url}</li>
+            <li>git checkout -b main</li>
+            <li>git add .</li>
+            <li>git status</li>
+            <li>git commit -m 'adding changes'</li>
+            <li>git pull origin main --allow-unrelated-histories</li>
+            <li>git push --set-upstream origin main</li>
+          </ul>
+          <br>
+          <img class="github-images" src="../images/syncing_github_with_readme/step3.png">
+        </li>
+        <li id="step4">
+          <p>At the <strong>git pull origin main --allow-unrelated-histories</strong> step in step3, to get out of the editor, please "escape", and then ":wq", and then enter. View the bottom left of the editor in the image below to see exactly what's done to get out of there.</p>
+          <a href="https://dev.to/jeremy/how-to-exit-vim-11dm" target="_blank">Reference</a>
+          <br>
+          <img class="github-images" src="../images/syncing_github_with_readme/step4.png">
+        </li>
+        <li id="step5">
+          <p>This is what your github repository should look like. My "exercise" folder was not included because it was empty.</p>
+          <img class="github-images" src="../images/syncing_github_with_readme/step5.png">
+        </li>
+      </ol>
+    </div>
+    <script src="../js/index.js" charset="utf-8"></script>
+  </body>
+</html>
