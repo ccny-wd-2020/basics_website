@@ -41,3 +41,7 @@ header {
 .note {
   background-color: yellow;
 }
+
+.center-text {
+  text-align: center;
+}
