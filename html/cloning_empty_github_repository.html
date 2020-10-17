@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Syncing Github Without README</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <header>
+      <a href="../index.html" class="header-links">Home</a>
+    </header>
+    <div class="content">
+      <h1>Cloning an empty github repository</h1>
+      <ul>
+        <li><a href="#step1">Step 1</a></li>
+        <li><a href="#step2">Step 2</a></li>
+        <li><a href="#step3">Step 3</a></li>
+      </ul>
+      <ol>
+        <li id="step1">
+          <p>Once you have <a href="creating_github_without_readme.html">created</a> your github repository, copy the https url.</p>
+          <img class="github-images" src="../images/cloning_empty_github_repository/step1.png">
+        </li>
+        <li id="step2">
+          <p>Open up your terminal or gitbash, and navigate to the directory where you want to place the new repository. When you run the <strong>git clone</strong> command, you'll see the folder for the repo created in that directory.</p>
+          <img class="github-images" src="../images/cloning_empty_github_repository/step2.png">
+          <img class="github-images" src="../images/cloning_empty_github_repository/step2.1.png">
+        </li>
+        <li id="step3">
+          <p>Once you've either dragged folders or created your project inside the cloned repository and are ready to push to github, run the following commands. <br>Explanation For those last 2 commands - When you clone a repository it sets the branch as master on github and your local. So you're pushing to master branch instead of the main branch. I get an error when I try and push to the main branch</p>
+          <img class="github-images" src="../images/cloning_empty_github_repository/step3.png">
+        </li>
+      </ol>
+      <br>
+      <div id="video">
+        <h1 class="center-text">Demonstration Video</h1>
+        <video style="display: block; margin: 0 auto;" width="640" height="480" controls>
+          <source src="../videos/cloning_empty_github.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <script src="../js/index.js" charset="utf-8"></script>
+  </body>
+</html>
