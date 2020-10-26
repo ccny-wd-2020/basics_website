@@ -7,4 +7,6 @@
 - [x] Creating a github repository with a readme
 - [x] Syncing a local project with a github repository without a readme
 - [x] Syncing a local project with a github repository with a readme
-- [ ] Creating a github repository and cloning the repository locally
+- [x] Creating a github repository and cloning the repository locally
+- [x] Pushing to github
+- [x] Deploying to heroku
