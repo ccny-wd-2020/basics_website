@@ -10,3 +10,4 @@
 - [x] Creating a github repository and cloning the repository locally
 - [x] Pushing to github
 - [x] Deploying to heroku
+- [ ] Deploying code to a paid host
