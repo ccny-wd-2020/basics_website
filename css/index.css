@@ -45,3 +45,8 @@ header {
 .center-text {
   text-align: center;
 }
+
+code {
+  color: red;
+  font-size: 18px;
+}

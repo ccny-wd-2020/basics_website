@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pushing Site to Host</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <header>
+      <a href="../index.html" class="header-links">Home</a>
+    </header>
+    <div class="content">
+      <h1>Pushing Site to Host</h1>
+      <p>I used namecheap for my host, so the instructions here will cover the instructions for hosting with Namecheap</p>
+      <ul>
+        <li><a href="#step1">Step 1</a></li>
+        <li><a href="#step2">Step 2</a></li>
+        <li><a href="#step3">Step 3 - Accessing your code via the browser</a></li>
+        <li><a href="#step4">Step 4 - Accessing your code via the terminal</a></li>
+      </ul>
+      <ol>
+        <li id="step1">
+          <p>Go to Namecheap.com via <a href="https://www.namecheap.com/hosting/shared/?gclid=CjwKCAiA-_L9BRBQEiwA-bm5fmVsq5Q6MTtMnWn7Aq6P27Fc1E-VdlH-Fd-E039EvQRWwgs4WxhW0xoCBoAQAvD_BwE" target="_blank">this link</a> to get the shared hosting and the domain name for a total of $27.30</p>
+        </li>
+        <li id="step2">
+          <p>You will get 2 emails. The 2nd one should contain your Hosting Account Details. The important ones here are the cPanel username and the cPanel password</p>
+        </li>
+        <li id="step3">
+          <h2>Accessing your code via the browser</h2>
+          <ol>
+            <li>Go to your website's cPanel i.e. "https://mywebsite.com/cpanel"</li>
+            <li>Enter your cpanel username and password</li>
+            <li>Once in your cPanel, go to "<strong>File Manager</strong>" under the "<strong>Files</strong>" section</li>
+            <li>Double click on the "<strong>public_html</strong>" directory and that is where all of your html, css & js files will go</li>
+            <li>With your main/root/home index file being named "<strong>index.html</strong>", put it in the "<strong>public_html</strong>" directory along with the rest of your project files, and your project should be connected. There might be some file path problems in terms of the css and js file paths in your html files. Do those adjustments.</li>
+          </ol>
+        </li>
+        <li id="step4">
+          <h2>Accessing your code via the terminal</h2>
+          <ol>
+            <li>Go to your Hosting Account Details email, and fine the Server Hostname, the cPaner Usernamd and cPanel Password</li>
+            <li>Type this command in the terminal <code>ssh cPanelUsername@serverHostname -p21098</code>. Mine looks like <code>ssh webddrlg@server290.web-hosting.com -p21098</code>. Type in your password once prompted.</li>
+            <li>Once signed in, navigate to the "<strong>public_html</strong>" directory. You can add and adjust code from here using the terminal editor with <code>vi</code></li>
+            <li>With your main/root/home index file being named "<strong>index.html</strong>", put it in the "<strong>public_html</strong>" directory along with the rest of your project files, and your project should be connected. There might be some file path problems in terms of the css and js file paths in your html files. Do those adjustments.</li>
+          </ol>
+        </li>
+      </ol>
+      <br>
+
+    </div>
+    <script src="../js/index.js" charset="utf-8"></script>
+  </body>
+</html>
