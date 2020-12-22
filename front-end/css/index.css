@@ -3,7 +3,6 @@
 header {
   padding: 10px 16px;
   background: #555;
-  color: #f1f1f1;
 }
 
 /* Page content */
@@ -49,4 +48,18 @@ header {
 code {
   color: red;
   font-size: 18px;
+}
+
+#header-basics {
+  color: deepskyblue;
+  text-align: center;
+  border: 2px solid deepskyblue;
+  width: 200px;
+}
+
+#questions-link {
+  color: powderblue;
+  margin-left: 25px;
+  margin-top: 1px;
+  text-decoration: none;
 }
