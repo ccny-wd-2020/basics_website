@@ -1,6 +1,4 @@
-var path = require('path');
-
-module.exports = (app) => {
+module.exports = (app, path, db) => {
   app.get('/', function(req,res){
   	res.sendFile(path.join(__dirname, '../../front-end/html/index.html'));
   });
@@ -36,4 +34,15 @@ module.exports = (app) => {
   app.get('/questions', function(req,res){
     res.sendFile(path.join(__dirname, '../../front-end/html/questions.html'))
   })
+
+  app.get('/questions/:id', function(req, res){
+    var id = req.params.id;
+    db.query("SELECT * FROM questions where id=" + id, function(err, result){
+      if(err){
+        throw new Error(err)
+      }
+      console.log(result)
+      res.json({success: true, message: "record received", data: result})
+    })
+  });
 }

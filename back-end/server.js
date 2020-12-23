@@ -1,12 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var path = require('path');
+var path = require('path')
 
 var PORT = process.env.PORT || 8000;
 
 var databaseConnection = require("./database/connection.js")();
 
-//TODO create router controller
 var pageRoutes = require('./routes/pages.js');
 var apiRoutes = require('./routes/api.js')
 
@@ -19,10 +18,10 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
 
 app.use(express.static('./front-end'));
 
-pageRoutes(app);
-apiRoutes(app);
-
 databaseConnection.connect();
+
+pageRoutes(app, path, databaseConnection);
+apiRoutes(app, databaseConnection);
 
 app.listen(PORT, function(){
 	console.log("Listening on PORT " + PORT);
