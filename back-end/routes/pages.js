@@ -41,8 +41,31 @@ module.exports = (app, path, db) => {
       if(err){
         throw new Error(err)
       }
-      console.log(result)
-      res.json({success: true, message: "record received", data: result})
+      var htmlString = '<html>';
+      htmlString += '<head>';
+      htmlString += '<meta charset="utf-8">'
+      htmlString += '<title>Question: '+result[0].question+'</title>'
+      htmlString += '<link rel="stylesheet" href="../css/index.css">'
+      htmlString += '</head>';
+      htmlString += '</body>';
+      htmlString += '<header><a href="/" class="header-links">Home</a></header>';
+      htmlString += "<h1>" + result[0].question + "</h1>";
+      htmlString += '<form id="answer-form">';
+      htmlString += '<label>Name</label>';
+      htmlString += '<br>';
+      htmlString += '<input type="text" id="name-input" placeholder="Your Name">';
+      htmlString += '<br><br>';
+      htmlString += '<label>Answer</label>';
+      htmlString += '<br>';
+      htmlString += '<textarea id="answer-input" data-id="'+result[0].id+'" placeholder="Your Answer to The Question" rows="8" cols="80"></textarea>';
+      htmlString += '<br><br>';
+      htmlString += '<input type="submit" value="Submit">';
+      htmlString += '</form>';
+      htmlString += '<script src="../js/index.js" charset="utf-8"></script>';
+      htmlString += '<script src="../js/answer.js" charset="utf-8"></script>';
+      htmlString += '</body></html>';
+      res.set('Content-Type', 'text/html');
+		  res.send(htmlString);
     })
   });
 }
