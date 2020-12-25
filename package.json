@@ -4,8 +4,8 @@
   "description": "- Website that I created as a how to guide for certain web development processes.",
   "main": "index.js",
   "scripts": {
-    "start": "node back-end/server.js",
-    "dev": "nodemon back-end/server.js",
+    "start": "env APP_ENV=dev node back-end/server.js",
+    "dev": "env APP_ENV=local nodemon back-end/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

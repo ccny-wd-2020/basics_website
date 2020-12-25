@@ -53,8 +53,7 @@ code {
 #header-basics {
   color: deepskyblue;
   text-align: center;
-  border: 2px solid deepskyblue;
-  width: 200px;
+  font-weight: bold;
 }
 
 #questions-link {
