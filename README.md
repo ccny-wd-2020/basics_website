@@ -4,7 +4,7 @@
 ## Environments
 - Dev Environment: Local Code
 - QA Environment: [Heroku Website](https://sheltered-ocean-54952.herokuapp.com/)
-- Production Environment: [Namecheap Hosted Website](https://web-development-teaching.com) that I created as a how to guide for certain web development processes.
+- Production Environment: [Namecheap Hosted Website](https://web-development-teaching.com)
 
 ## Processes to Document
 - [x] Creating a github repository without a readme
