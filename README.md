@@ -15,4 +15,9 @@
 - [x] Pushing to github
 - [x] Deploying to heroku
 - [x] Deploying code to a paid host
+
+## Additions to Website
 - [x] Questions and answers section
+
+## References
+- [MySQL Heroku Database](https://devcenter.heroku.com/articles/jawsdb)
