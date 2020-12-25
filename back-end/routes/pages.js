@@ -104,7 +104,7 @@ module.exports = (app, path, db) => {
       htmlString += '<link rel="stylesheet" href="../css/index.css">'
       htmlString += '</head>';
       htmlString += '<body>';
-      htmlString += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a><a href="/ask-question">Ask a Question</a></span></div></header>';
+      htmlString += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a><a class="header-link" href="/ask-question">Ask a Question</a></span></div></header>';
       htmlString += "<h1><a href='/questions/"+id+"'>" + result[0].question + "</a></h1>";
       htmlString += '<form id="answer-form">';
       htmlString += '<label>Name</label>';
