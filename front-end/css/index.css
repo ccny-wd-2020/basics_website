@@ -1,7 +1,7 @@
 /* https://www.w3schools.com/howto/howto_js_sticky_header.asp */
 /* Style the header */
 header {
-  padding: 10px 16px;
+  padding: 10px 0px;
   background: #555;
 }
 
@@ -52,13 +52,39 @@ code {
 
 #header-basics {
   color: deepskyblue;
-  text-align: center;
+  position: absolute;
   font-weight: bold;
+  right: 25px;
+  font-size: 24px;
+  top: 23px;
 }
 
-#questions-link {
+.header-link {
   color: powderblue;
-  margin-left: 25px;
+  margin-left: 20px;
   margin-top: 1px;
   text-decoration: none;
+}
+
+.question-link {
+  color: #297781;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.question-link:hover {
+  text-decoration: underline;
+}
+
+.question-link:active {
+  color: powderblue;
+}
+
+.answer {
+  margin: 30px;
+  border: 10px solid powderblue;
+  background: powderblue;
+  width: fit-content;
+  height: auto;
+  border-radius: 9px;
 }

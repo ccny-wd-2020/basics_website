@@ -54,7 +54,7 @@ module.exports = (app, path, db) => {
         errorHtml += '<link rel="stylesheet" href="../css/index.css">'
         errorHtml += '</head>';
         errorHtml += '<body>';
-        errorHtml += '<header><a href="/" class="header-links">Home</a><a href="/questions" class="header-links">Questions</a><a href="/ask-question" class="header-links">Ask a Question</a></header>';
+        errorHtml += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a><a class="header-link" href="/ask-question">Ask a Question</a></span></div></header>';
         errorHtml += "<h1>question id " + id + " not found</h1>";
         errorHtml += '</body></html>';
 
@@ -72,15 +72,15 @@ module.exports = (app, path, db) => {
           htmlString += '<link rel="stylesheet" href="/css/index.css">'
           htmlString += '</head>';
           htmlString += '<body>';
-          htmlString += '<header><a href="/" class="header-links">Home</a><a href="/questions" class="header-links">Questions</a></header>';
+          htmlString += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a></span></div></header>';
           htmlString += "<h1>" + questionResult[0].question + "</h1>";
           htmlString += "<a href='/answer/"+id+"'><button data-id="+id+">Answer Question</button></a>";
           htmlString += "<h2>Answers</h2>";
+          htmlString += "<div id='answers-div'>";
           for(var i = 0; i < answersResult.length; i++){
-            htmlString += "<li>"+answersResult[i].answer+"</li>";
+            htmlString += "<p class='answer'>"+answersResult[i].answer+"</p>";
           }
-          htmlString += "<ol>";
-          htmlString += "</ol>";
+          htmlString += "</div>";
           htmlString += '<script src="../js/index.js" charset="utf-8"></script>';
           htmlString += '</body></html>';
 
@@ -104,7 +104,7 @@ module.exports = (app, path, db) => {
       htmlString += '<link rel="stylesheet" href="../css/index.css">'
       htmlString += '</head>';
       htmlString += '<body>';
-      htmlString += '<header><a href="/" class="header-links">Home</a><a href="/questions" class="header-links">Questions</a><a href="/ask-question" class="header-links">Ask a Question</a></header>';
+      htmlString += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a><a href="/ask-question">Ask a Question</a></span></div></header>';
       htmlString += "<h1><a href='/questions/"+id+"'>" + result[0].question + "</a></h1>";
       htmlString += '<form id="answer-form">';
       htmlString += '<label>Name</label>';
