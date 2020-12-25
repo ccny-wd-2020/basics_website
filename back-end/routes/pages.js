@@ -41,33 +41,53 @@ module.exports = (app, path, db) => {
 
   app.get('/questions/:id', function(req, res){
     var id = req.params.id;
-    db.query("SELECT * FROM questions where id=" + id, function(err, result){
-      if(err){
-        throw new Error(err)
+    db.query("SELECT * FROM questions where id=" + id, function(questionErr, questionResult){
+      if(questionErr){
+        throw new Error(questionErr)
       }
-      db.query("SELECT * FROM answers where question_id=" + id, function(err, answersResult){
-        var htmlString = '<html>';
-        htmlString += '<head>';
-        htmlString += '<meta charset="utf-8">'
-        htmlString += '<title>Question: '+result[0].question+'</title>'
-        htmlString += '<link rel="stylesheet" href="../css/index.css">'
-        htmlString += '</head>';
-        htmlString += '</body>';
-        htmlString += '<header><a href="/" class="header-links">Home</a><a href="/questions" class="header-links">Questions</a></header>';
-        htmlString += "<h1>" + result[0].question + "</h1>";
-        htmlString += "<a href='/answer/"+id+"'><button data-id="+id+">Answer Question</button></a>";
-        htmlString += "<h2>Answers</h2>";
-        for(var i = 0; i < answersResult.length; i++){
-          htmlString += "<li>"+answersResult[i].answer+"</li>";
-        }
-        htmlString += "<ol>";
-        htmlString += "</ol>";
-        htmlString += '<script src="../js/index.js" charset="utf-8"></script>';
-        htmlString += '</body></html>';
+      if(questionResult.length == 0){
+        var errorHtml = "";
+        errorHtml += '<html>';
+        errorHtml += '<head>';
+        errorHtml += '<meta charset="utf-8">'
+        errorHtml += '<title>Error Page</title>'
+        errorHtml += '<link rel="stylesheet" href="../css/index.css">'
+        errorHtml += '</head>';
+        errorHtml += '<body>';
+        errorHtml += '<header><a href="/" class="header-links">Home</a><a href="/questions" class="header-links">Questions</a><a href="/ask-question" class="header-links">Ask a Question</a></header>';
+        errorHtml += "<h1>question id " + id + " not found</h1>";
+        errorHtml += '</body></html>';
 
         res.set('Content-Type', 'text/html');
-  		  res.send(htmlString);
-      });
+        res.status(404).send(errorHtml);
+      } else {
+        db.query("SELECT * FROM answers where question_id=" + id, function(answersErr, answersResult){
+          if(answersErr){
+            throw new Error(answersErr)
+          }
+          var htmlString = '<html>';
+          htmlString += '<head>';
+          htmlString += '<meta charset="utf-8">'
+          htmlString += '<title>Question: '+questionResult[0].question+'</title>'
+          htmlString += '<link rel="stylesheet" href="/css/index.css">'
+          htmlString += '</head>';
+          htmlString += '<body>';
+          htmlString += '<header><a href="/" class="header-links">Home</a><a href="/questions" class="header-links">Questions</a></header>';
+          htmlString += "<h1>" + questionResult[0].question + "</h1>";
+          htmlString += "<a href='/answer/"+id+"'><button data-id="+id+">Answer Question</button></a>";
+          htmlString += "<h2>Answers</h2>";
+          for(var i = 0; i < answersResult.length; i++){
+            htmlString += "<li>"+answersResult[i].answer+"</li>";
+          }
+          htmlString += "<ol>";
+          htmlString += "</ol>";
+          htmlString += '<script src="../js/index.js" charset="utf-8"></script>';
+          htmlString += '</body></html>';
+
+          res.set('Content-Type', 'text/html');
+          res.status(200).send(htmlString);
+        });
+      }
     });
   });
 
@@ -83,7 +103,7 @@ module.exports = (app, path, db) => {
       htmlString += '<title>Question: '+result[0].question+'</title>'
       htmlString += '<link rel="stylesheet" href="../css/index.css">'
       htmlString += '</head>';
-      htmlString += '</body>';
+      htmlString += '<body>';
       htmlString += '<header><a href="/" class="header-links">Home</a><a href="/questions" class="header-links">Questions</a><a href="/ask-question" class="header-links">Ask a Question</a></header>';
       htmlString += "<h1><a href='/questions/"+id+"'>" + result[0].question + "</a></h1>";
       htmlString += '<form id="answer-form">';

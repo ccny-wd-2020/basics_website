@@ -24,7 +24,7 @@ header {
 
 .header-links {
   display: inline-flex;
-  padding: 5px;
+  padding: 10px;
   color: powderblue;
 }
 
