@@ -13,10 +13,10 @@ document.querySelector("#question-form").onsubmit = function(e){
     fetch("/api/questions", {
       method: "POST",
       body: JSON.stringify(inputs)
-    }).then(response => response.json()).then(data => {
-      console.log(data)
+    }).then(response => {
+      window.location.href = "/questions/submitted";
     }).catch(err => {
-      console.error(err)
+      alert(err)
     })
   }
 }

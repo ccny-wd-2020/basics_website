@@ -88,3 +88,7 @@ code {
   height: auto;
   border-radius: 9px;
 }
+
+.submission-header-text {
+  text-align: center;
+}

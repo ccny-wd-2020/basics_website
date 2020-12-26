@@ -11,6 +11,8 @@ var sticky = header.offsetTop;
 function myFunction() {
   if (window.pageYOffset > sticky) {
     header.classList.add("sticky");
+    // TODO: this didnt work
+    // document.querySelector("#header-basics").style.marginTop = "-7px;"
   } else {
     header.classList.remove("sticky");
   }
