@@ -39,10 +39,6 @@ module.exports = (app, path, db) => {
     res.sendFile(path.join(__dirname, '../../front-end/html/questions_answers/ask_a_question.html'))
   });
 
-  // app.get('/questions/submitted', function(req,res){
-  //   res.sendFile(path.join(__dirname, '../../front-end/html/questions_answers/question_submitted.html'))
-  // });
-
   app.get('/questions/:id', function(req, res){
     var id = req.params.id;
     if(Number.isInteger(parseInt(id))){
