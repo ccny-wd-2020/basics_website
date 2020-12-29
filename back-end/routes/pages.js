@@ -99,7 +99,7 @@ module.exports = (app, path, db) => {
       successHtml += '<html>';
       successHtml += '<head>';
       successHtml += '<meta charset="utf-8">'
-      successHtml += '<title>Error Page</title>'
+      successHtml += '<title>Question Submitted</title>'
       successHtml += '<link rel="stylesheet" href="../css/index.css">'
       successHtml += '</head>';
       successHtml += '<body>';
