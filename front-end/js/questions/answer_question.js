@@ -16,9 +16,9 @@ document.querySelector("#answer-form").onsubmit = function(e){
       method: "POST",
       body: JSON.stringify(inputs)
     }).then(response => response.json()).then(data => {
-      window.location.href = "/answer/submitted";
+      window.location.href = "/answer-question/submitted";
     }).catch(err => {
-      alert(err)
+      console.log(err)
     })
   }
 }

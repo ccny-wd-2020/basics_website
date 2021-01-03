@@ -1,3 +1,6 @@
+var sendMail = require("./../config/mail.js");
+var mailHtml = require("./../html/mail.js")
+
 module.exports = (app, db) => {
   app.post('/api/questions', function(req,res){
     var requestObject = JSON.parse(req.body);
@@ -6,7 +9,8 @@ module.exports = (app, db) => {
     	if(err){
     		throw new Error(err)
     	}
-      res.json({success: true, message: "record added"})
+
+      sendMail(mailHtml.questionSubmitted(requestObject), res);
     });
   });
 

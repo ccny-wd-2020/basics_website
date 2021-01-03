@@ -1,3 +1,5 @@
+const pagesHtml = require('../html/pages.js')
+
 module.exports = (app, path, db) => {
   app.get('/', function(req,res){
   	res.sendFile(path.join(__dirname, '../../front-end/html/index.html'));
@@ -40,123 +42,55 @@ module.exports = (app, path, db) => {
   });
 
   app.get('/questions/:id', function(req, res){
-    var id = req.params.id;
-    if(Number.isInteger(parseInt(id))){
-      db.query("SELECT * FROM questions where id=" + id, function(questionErr, questionResult){
+    var questionId = req.params.id;
+    if(Number.isInteger(parseInt(questionId))){
+      db.query("SELECT * FROM questions where id=" + questionId, function(questionErr, questionResult){
         if(questionErr){
           throw new Error(questionErr)
         }
         if(questionResult.length == 0){
-          var errorHtml = "";
-          errorHtml += '<html>';
-          errorHtml += '<head>';
-          errorHtml += '<meta charset="utf-8">'
-          errorHtml += '<title>Error Page</title>'
-          errorHtml += '<link rel="stylesheet" href="../css/index.css">'
-          errorHtml += '</head>';
-          errorHtml += '<body>';
-          errorHtml += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a><a class="header-link" href="/ask-question">Ask a Question</a></span></div></header>';
-          errorHtml += "<h1>question id " + id + " not found</h1>";
-          errorHtml += '</body></html>';
+          const errorHtml = pagesHtml.getQuestionError(questionId);
 
           res.set('Content-Type', 'text/html');
           res.status(404).send(errorHtml);
         } else {
-          db.query("SELECT * FROM answers where question_id=" + id, function(answersErr, answersResult){
+          db.query("SELECT * FROM answers where question_id=" + questionId, function(answersErr, answersResult){
             if(answersErr){
               throw new Error(answersErr)
             }
-            var htmlString = '<html>';
-            htmlString += '<head>';
-            htmlString += '<meta charset="utf-8">'
-            htmlString += '<title>Question: '+questionResult[0].question+'</title>'
-            htmlString += '<link rel="stylesheet" href="/css/index.css">'
-            htmlString += '</head>';
-            htmlString += '<body>';
-            htmlString += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a></span></div></header>';
-            htmlString += "<h1>" + questionResult[0].question + "</h1>";
-            htmlString += "<a href='/answer/"+id+"'><button data-id="+id+">Answer Question</button></a>";
-            htmlString += "<h2>Answers</h2>";
-            htmlString += "<div id='answers-div'>";
-            for(var i = 0; i < answersResult.length; i++){
-              htmlString += "<p class='answer'>"+answersResult[i].answer+"</p>";
-            }
-            htmlString += "</div>";
-            htmlString += '<script src="../js/index.js" charset="utf-8"></script>';
-            htmlString += '</body></html>';
+            const question = questionResult[0].question
+            const getQuestionSuccessHtml = pagesHtml.getQuestionSuccess(questionId, question, answersResult);
 
             res.set('Content-Type', 'text/html');
-            res.status(200).send(htmlString);
+            res.status(200).send(getQuestionSuccessHtml);
           });
         }
       });
-    } else if (id == "submitted") {
-      var successHtml = "";
-      successHtml += '<html>';
-      successHtml += '<head>';
-      successHtml += '<meta charset="utf-8">'
-      successHtml += '<title>Question Submitted</title>'
-      successHtml += '<link rel="stylesheet" href="../css/index.css">'
-      successHtml += '</head>';
-      successHtml += '<body>';
-      successHtml += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a><a class="header-link" href="/ask-question">Ask a Question</a></span></div></header>';
-      successHtml += "<h1 class='submission-header-text'>Question Submission Successful</h1>";
-      successHtml += '</body></html>';
+    } else if (questionId == "submitted") {
+      var questionSubmittedSuccessHtml = pagesHtml.questionSubmittedSuccess();
 
       res.set('Content-Type', 'text/html');
-      res.status(200).send(successHtml);
+      res.status(200).send(questionSubmittedSuccessHtml);
     }
   });
 
-  app.get('/answer/:id', function(req, res){
-    var id = req.params.id;
-    if(Number.isInteger(parseInt(id))){
-      db.query("SELECT * FROM questions where id=" + id, function(err, result){
-        if(err){
-          throw new Error(err)
+  app.get('/answer-question/:id', function(req, res){
+    var answerId = req.params.id;
+    if(Number.isInteger(parseInt(answerId))){
+      db.query("SELECT * FROM questions where id=" + answerId, function(questionErr, questionResult){
+        if(questionErr){
+          throw new Error(questionErr)
         }
-        var htmlString = '<html>';
-        htmlString += '<head>';
-        htmlString += '<meta charset="utf-8">'
-        htmlString += '<title>Question: '+result[0].question+'</title>'
-        htmlString += '<link rel="stylesheet" href="../css/index.css">'
-        htmlString += '</head>';
-        htmlString += '<body>';
-        htmlString += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a><a class="header-link" href="/ask-question">Ask a Question</a></span></div></header>';
-        htmlString += "<h1><a href='/questions/"+id+"'>" + result[0].question + "</a></h1>";
-        htmlString += '<form id="answer-form">';
-        htmlString += '<label>Name</label>';
-        htmlString += '<br>';
-        htmlString += '<input type="text" id="name-input" placeholder="Your Name">';
-        htmlString += '<br><br>';
-        htmlString += '<label>Answer</label>';
-        htmlString += '<br>';
-        htmlString += '<textarea id="answer-input" data-id="'+id+'" placeholder="Your Answer to The Question" rows="8" cols="80"></textarea>';
-        htmlString += '<br><br>';
-        htmlString += '<input type="submit" value="Submit">';
-        htmlString += '</form>';
-        htmlString += '<script src="../js/index.js" charset="utf-8"></script>';
-        htmlString += '<script src="../js/questions/answer_question.js" charset="utf-8"></script>';
-        htmlString += '</body></html>';
+        var answerQuestionHtml = pagesHtml.answerQuestion(questionResult[0].question, answerId)
 
         res.set('Content-Type', 'text/html');
-        res.send(htmlString);
+        res.send(answerQuestionHtml);
       })
-    } else if (id == "submitted") {
-      var successHtml = "";
-      successHtml += '<html>';
-      successHtml += '<head>';
-      successHtml += '<meta charset="utf-8">'
-      successHtml += '<title>Answer Submitted</title>'
-      successHtml += '<link rel="stylesheet" href="../css/index.css">'
-      successHtml += '</head>';
-      successHtml += '<body>';
-      successHtml += '<header><div class="header-links"><span id="header-basics">Welcome to the Basics</span><span><a class="header-link" href="/">Home</a><a class="header-link" href="/questions">Questions</a><a class="header-link" href="/ask-question">Ask a Question</a></span></div></header>';
-      successHtml += "<h1 class='submission-header-text'>Answer Submission Successful</h1>";
-      successHtml += '</body></html>';
+    } else if (answerId == "submitted") {
+      var answerSubmittedSuccessfullyHtml = pagesHtml.answerSubmittedSuccessfully()
 
       res.set('Content-Type', 'text/html');
-      res.status(200).send(successHtml);
+      res.status(200).send(answerSubmittedSuccessfullyHtml);
     }
 
   });
