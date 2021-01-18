@@ -5,6 +5,14 @@ module.exports = (app, path, db) => {
   	res.sendFile(path.join(__dirname, '../../front-end/html/index.html'));
   });
 
+  app.get('/javascript/running-front-end', function(req,res){
+    res.sendFile(path.join(__dirname, '../../front-end/html/instructions/running_javascript_front_end.html'));
+  });
+
+  app.get('/javascript/running-back-end', function(req,res){
+    res.sendFile(path.join(__dirname, '../../front-end/html/instructions/running_javascript_back_end.html'));
+  });
+
   app.get('/github/cloning', function(req,res){
     res.sendFile(path.join(__dirname, '../../front-end/html/instructions/cloning_empty_github_repository.html'));
   });

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Running Javascript on the Front End (Browser Side)</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <header>
+      <div class="header-links">
+        <span id="header-basics">Welcome to the Basics</span>
+        <span>
+          <a class="header-link" href="/">Home</a>
+          <a class="header-link" href="/questions">Questions</a>
+          <a class="header-link" href="/ask-question">Ask a Question</a>
+        </span>
+      </div>
+    </header>
+    <div class="content">
+      <h1>Running Javascript on the Front End (Browser Side) - In Google Chrome</h1>
+      <ul>
+        <li><a href="#step1">Step 1</a></li>
+        <li><a href="#step2">Step 2</a></li>
+        <li><a href="#step3">Step 3</a></li>
+        <li><a href="#step4">Step 4</a></li>
+        <li><a href="#step5">Step 5</a></li>
+        <li><a href="#video">Video</a></li>
+      </ul>
+      <ol>
+        <li id="step1">
+          <p>Create a folder, and inside of that folder create a .html and a .js file</p>
+        </li>
+        <li id="step2">
+          <p>Put contents in the .html file and the .js file.<br>a. For the contents in the .html file, there needs to be a script tag that connects the javascript file to the html file. Place this script tag right above the closing of the body tab. The "src" field in the script tag represents the path to the connecting javascript file. This is how my html file looks:<br><img src="../images/running_javascript_front_end/html.png"/><br>b. For the .js file, the contents should be a simple console log. This is how my javascript file looks:<br><img src="../images/running_javascript_front_end/js.png"/></p>
+        </li>
+        <li id="step3">
+          <p>Get the path to that .html. I am using the "atom" text editor, which allows me to copy the path to a file.</p>
+        </li>
+        <li id="step4">
+          <p>Paste the path to that .html into your browser. I am pasting into my Google Chrome Browser.</p>
+        </li>
+        <li id="step5">
+          <p>These instructions are strictly for Google Chrome. Right click on the browser, and open up Google Inspect. Go to the console tab, and you should see the console log from your javascript file</p>
+        </li>
+      </ol>
+      <br>
+      <div id="video">
+        <h1 class="center-text">Demonstration Video</h1>
+        <iframe style="display: block; margin: 0 auto;" width="640" height="480"
+          src="https://www.youtube.com/embed/XRQKf81m_PM">
+        </iframe>
+      </div>
+    </div>
+    <script src="../js/index.js" charset="utf-8"></script>
+  </body>
+</html>
