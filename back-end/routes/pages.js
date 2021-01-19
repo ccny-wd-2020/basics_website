@@ -13,6 +13,10 @@ module.exports = (app, path, db) => {
     res.sendFile(path.join(__dirname, '../../front-end/html/instructions/running_javascript/running_javascript_back_end.html'));
   });
 
+  app.get('/node/npm-install', function(req,res){
+    res.sendFile(path.join(__dirname, '../../front-end/html/instructions/node/npm_install.html'));
+  });
+
   app.get('/github/cloning', function(req,res){
     res.sendFile(path.join(__dirname, '../../front-end/html/instructions/github/cloning_empty_github_repository.html'));
   });

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>The correct way to NPM Install</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <header>
+      <div class="header-links">
+        <span id="header-basics">Welcome to the Basics</span>
+        <span>
+          <a class="header-link" href="/">Home</a>
+          <a class="header-link" href="/questions">Questions</a>
+          <a class="header-link" href="/ask-question">Ask a Question</a>
+        </span>
+      </div>
+    </header>
+    <div class="content">
+      <h1>The correct way to NPM Install</h1>
+      <p>The reason I say the correct way is because you should be doing npm install separately for every project, and managing your npm imported dependencies in the package.json for each project. This is also very important for hosting a node.js app as well.</p>
+      <ul>
+        <li><a href="#step1">Step 1</a></li>
+        <li><a href="#step2">Step 2</a></li>
+        <li><a href="#step2">Step 3</a></li>
+        <li><a href="#step2">Step 4</a></li>
+        <li><a href="#video">Video</a></li>
+      </ul>
+      <ol>
+        <li id="step1">
+          <p>Create a folder representing your node.js project</p>
+        </li>
+        <li id="step2">
+          <p>Navigate to that node.js project directory using your terminal/bash</p>
+        </li>
+        <li id="step3">
+          <p>Run <code>npm init</code> in your terminal/bash and press enter all the way through</p>
+        </li>
+        <li id="step4">
+          <p>I will be importing the 'request' dependency from NPM to my project using this command: <code>npm install request --save</code></p>
+        </li>
+      </ol>
+      <br>
+      <div id="video">
+        <h1 class="center-text">Demonstration Video</h1>
+        <iframe style="display: block; margin: 0 auto;" width="640" height="480"
+          src="https://www.youtube.com/embed/D9QrPNhsAEI">
+        </iframe>
+      </div>
+    </div>
+    <script src="../js/index.js" charset="utf-8"></script>
+  </body>
+</html>
