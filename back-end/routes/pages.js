@@ -1,4 +1,5 @@
-const pagesHtml = require('../html/pages.js')
+const pagesHtml = require('../html/pages.js');
+var socialNetworkHtml = require('./../html/social_network.js');
 
 module.exports = (app, path, db) => {
   app.get('/', function(req,res){
@@ -105,5 +106,53 @@ module.exports = (app, path, db) => {
       res.status(200).send(answerSubmittedSuccessfullyHtml);
     }
 
+  });
+
+  app.get('/social-network', function(req,res){
+    res.sendFile(path.join(__dirname, '../../front-end/html/social_network/main_page.html'))
+  });
+
+  app.get('/social-network/sign-up', function(req,res){
+    res.sendFile(path.join(__dirname, '../../front-end/html/social_network/sign_up.html'));
+  });
+
+  app.get('/social-network/sign-in', function(req,res){
+    res.sendFile(path.join(__dirname, '../../front-end/html/social_network/sign_in.html'));
+  });
+
+  app.get('/social-network/profile/:username', (req,res) => {
+    if(req.user){
+      if(req.user.username == req.params.username){
+        var userInfo = [];
+        var query = `SELECT name FROM users WHERE id=${req.user.id}`;
+        var profileArr = [];
+        db.query(query, (error,queryRes) => {
+          var userArr = [];
+          if(error){
+            res.json({error: error})
+          } else {
+            userArr.push(queryRes[0])
+          }
+          var profileQuery = `SELECT * FROM profile WHERE user_id=${req.user.id}`
+          db.query(profileQuery, (profileError, profileRes) => {
+            if(profileError){
+              res.json({error: profileError})
+            } else {
+              console.log(profileRes[0])
+              var data = {
+                user: userArr[0],
+                profile: profileRes[0]
+              }
+              res.set('Content-Type', 'text/html');
+              res.send(socialNetworkHtml(data));
+            }
+          })
+        });
+      } else {
+        res.redirect('/social-network');
+      }
+    } else {
+      res.redirect('/social-network');
+    }
   });
 }
