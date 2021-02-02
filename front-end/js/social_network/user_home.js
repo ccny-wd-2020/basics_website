@@ -63,14 +63,15 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: JSON.stringify(body),
 			contentType: 'application/json',
+			success: function (res) {
+				$("#"+res.field+"-text").text(res.updatedValue);
+				$("#"+res.field+"-edit").attr("current-value", res.updatedValue);
+				$('#edit-modal').modal('toggle');
+			},
 			error: function (err) {
-				console.log(err);
+				console.log(err)
 			}
-		}).then(function(res){
-			$("#"+res.field+"-text").text(res.updatedValue);
-			$("#"+res.field+"-edit").attr("current-value", res.updatedValue);
-			$('#edit-modal').modal('toggle');
-		})
+		});
 
 	})
 

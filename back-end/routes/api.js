@@ -110,7 +110,7 @@ module.exports = (app, db, passport) => {
     let profileQueryString = "Update profile SET " + field + "='" + req.body.updatedValue + "' WHERE user_id=" + req.user.id;
     db.query(profileQueryString, function(err, data){
       if(err){
-        throw new Error(err)
+        return res.status(500).json({message: err.sqlMessage})
       }
       const response = {
         updatedValue: req.body.updatedValue,
@@ -119,5 +119,5 @@ module.exports = (app, db, passport) => {
       res.json(response)
     });
   });
-  
+
 }
