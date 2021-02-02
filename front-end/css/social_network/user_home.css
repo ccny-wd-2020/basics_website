@@ -13,4 +13,14 @@
 
 .unbold {
   font-weight: normal;
-}​
+}
+
+.glyphicon-edit {
+	color: cornflowerblue;
+	margin-left: 10px;
+}
+
+.glyphicon-edit:hover {
+	cursor: pointer;
+	color: crimson;
+}

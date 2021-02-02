@@ -104,4 +104,20 @@ module.exports = (app, db, passport) => {
       res.json(req.user)
     })
   });
+
+  app.post('/api/edit-bio', function(req, res){
+    let field = req.body.field == "bio" ? req.body.field : "favorite_" + req.body.field
+    let profileQueryString = "Update profile SET " + field + "='" + req.body.updatedValue + "' WHERE user_id=" + req.user.id;
+    db.query(profileQueryString, function(err, data){
+      if(err){
+        throw new Error(err)
+      }
+      const response = {
+        updatedValue: req.body.updatedValue,
+        field: req.body.field
+      }
+      res.json(response)
+    });
+  });
+  
 }

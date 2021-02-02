@@ -138,7 +138,6 @@ module.exports = (app, path, db) => {
             if(profileError){
               res.json({error: profileError})
             } else {
-              console.log(profileRes[0])
               var data = {
                 user: userArr[0],
                 profile: profileRes[0]

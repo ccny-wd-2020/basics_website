@@ -31,12 +31,47 @@ $(document).ready(function(){
 			url: '/api/user-bio',
 			dataType: 'json',
 			data: JSON.stringify(inputs),
-			contentType: 'application/json'
+			contentType: 'application/json',
+			error: function (err) {
+				console.log(err);
+			}
 		}).then(function(res){
 			window.location.href = "/social-network/profile/" + res.username;
-		}).catch(function(err){
-			alert(err);
 		})
+	});
+
+	$('.glyphicon-edit').click(function(){
+		$('#edit-modal').modal('toggle');
+		$(".update-field").text($(this).attr("field"));
+		$("#edit-input").val($(this).attr("current-value"));
+	});
+
+	$("#edit-form").submit(function(e){
+		e.preventDefault();
+
+		const field = $(".update-field").eq(0).text();
+		const updatedValue = $("#edit-input").val();
+
+		const body = {
+			field: field,
+			updatedValue: updatedValue
+		}
+
+		$.ajax({
+			method: 'POST',
+			url: '/api/edit-bio',
+			dataType: 'json',
+			data: JSON.stringify(body),
+			contentType: 'application/json',
+			error: function (err) {
+				console.log(err);
+			}
+		}).then(function(res){
+			$("#"+res.field+"-text").text(res.updatedValue);
+			$("#"+res.field+"-edit").attr("current-value", res.updatedValue);
+			$('#edit-modal').modal('toggle');
+		})
+
 	})
 
 });
